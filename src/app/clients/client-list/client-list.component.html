@@ -1,0 +1,39 @@
+<h3>List of clients</h3>
+
+<form [formGroup]="filterForm" (ngSubmit)="onSubmit(filterForm.value)">
+  <div class="form-group form-group-sm">
+    <div class="input-group">
+    <label class="mr-1 col-sm-2">From date:</label>
+    <input class="form-control col-sm-3" minLength="10" maxlength="10" placeholder="dd-mm-yyyy" type="text" formControlName="fromDate">
+  </div>
+   <div class="input-group">
+    <label class="mr-1 col-sm-2">To date:</label>
+    <input class="form-control col-sm-3" minLength="10" maxlength="10" placeholder="dd-mm-yyyy" formControlName="toDate">
+  </div>
+  </div>
+  <button class="btn btn-success" type="submit">Filter</button>
+</form>
+
+<hr />
+
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Name</th>
+      <th scope="col">Birth date</th>
+      <th scope="col">Gender</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let client of clientList;">
+      <th scope="row">{{ client.personaId }}</th>
+      <td>
+        {{ client.firstName }} {{ client.lastName }}
+      </td>
+      <td>{{ client.birthDate }}</td>
+      <td>{{ client.gender }}</td>
+    </tr>
+  </tbody>
+</table>
