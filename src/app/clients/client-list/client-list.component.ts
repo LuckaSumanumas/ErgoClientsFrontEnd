@@ -12,6 +12,7 @@ export class ClientListComponent implements OnInit {
 
   public clientList = [];
   filterForm: FormGroup;
+  public errorMsg: String;
 
   constructor(
     private clientApi: ClientService,
@@ -31,9 +32,14 @@ export class ClientListComponent implements OnInit {
     console.log("retrieving list of clients");
     this.clientApi.getClients(fromDate, toDate)
       .subscribe((resp: ClientResponse) => {
+      this.errorMsg =  resp.message;
       this.clientList = resp.entities;
-      console.log(this.clientList);
-    });
+      console.log("response: " + JSON.stringify(resp));
+    }, e => {
+      console.error(e);
+      this.errorMsg = e;
+     });
+
   }
 
   onSubmit(filterData) {

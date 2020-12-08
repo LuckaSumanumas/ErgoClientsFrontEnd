@@ -3,14 +3,17 @@
 <form [formGroup]="filterForm" (ngSubmit)="onSubmit(filterForm.value)">
   <div class="form-group form-group-sm">
     <div class="input-group">
-    <label class="mr-1 col-sm-2">From date:</label>
-    <input class="form-control col-sm-3" minLength="10" maxlength="10" placeholder="dd-mm-yyyy" type="text" formControlName="fromDate">
+      <label class="mr-1 col-sm-2">From date:</label>
+      <input class="form-control col-sm-3" minLength="10" maxlength="10" placeholder="dd-mm-yyyy" type="text"
+        formControlName="fromDate">
+    </div>
+    <div class="input-group">
+      <label class="mr-1 col-sm-2">To date:</label>
+      <input class="form-control col-sm-3" minLength="10" maxlength="10" placeholder="dd-mm-yyyy"
+        formControlName="toDate">
+    </div>
   </div>
-   <div class="input-group">
-    <label class="mr-1 col-sm-2">To date:</label>
-    <input class="form-control col-sm-3" minLength="10" maxlength="10" placeholder="dd-mm-yyyy" formControlName="toDate">
-  </div>
-  </div>
+  <p class="text-danger">{{ errorMsg }}</p>
   <button class="btn btn-success" type="submit">Filter</button>
 </form>
 

@@ -9,6 +9,8 @@ const clientApi = "http://localhost:8085/api/clients/";
 @Injectable()
 export class ClientService {
 
+  private errorMsg: String;
+
   constructor(
     private http: HttpClient
   ) { }
@@ -29,13 +31,16 @@ export class ClientService {
   }
 
   private handleError(error: HttpErrorResponse) {
+
+    const status: number = error.status;
+    this.errorMsg = error.error.message;
+
     if (error.error instanceof ErrorEvent) {
-      console.log(error.error.message)
+      console.log(this.errorMsg)
     } else {
-      console.log(error.status)
+      console.log(status)
     }
-    return throwError(
-      console.log('Something is wrong!'));
+    return throwError(this.errorMsg);
   };
 
 }
